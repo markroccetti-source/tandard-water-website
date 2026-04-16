@@ -8,9 +8,30 @@ export default function Home() {
           </p>
 
           <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6">
-            Soluzioni professionali a base di biossido di cloro per acqua,
-            impianti e superfici
-          </h1>
+  Elimina batteri, biofilm e contaminazioni nell’acqua e negli impianti
+</h1>
+
+<p className="text-lg md:text-xl text-gray-600 mb-8">
+  ClorOX2 è la soluzione professionale a base di biossido di cloro utilizzata
+  per la disinfezione di acqua, superfici e impianti in ambito civile,
+  industriale e zootecnico.
+</p>
+
+<div className="flex flex-col sm:flex-row gap-4">
+  <a
+    href="#contatti"
+    className="inline-flex items-center justify-center rounded-xl bg-black text-white px-6 py-3 font-medium"
+  >
+    Richiedi una consulenza
+  </a>
+
+  <a
+    href="#applicazioni"
+    className="inline-flex items-center justify-center rounded-xl border border-gray-300 px-6 py-3 font-medium"
+  >
+    Dove viene utilizzato
+  </a>
+</div>
 
           <p className="text-lg md:text-xl text-gray-600 mb-8">
             Standard Water sviluppa soluzioni per il trattamento e la
