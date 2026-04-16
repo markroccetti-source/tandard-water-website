@@ -54,7 +54,54 @@ export default function Home() {
             </p>
           </div>
         </div>
-      </section>
+        <section className="bg-slate-50 border-t border-slate-200">
+  <div className="max-w-6xl mx-auto px-6 py-20">
+
+    <div className="max-w-3xl mb-12">
+      <p className="text-sm uppercase tracking-[0.25em] text-slate-500 mb-3">
+        Il problema
+      </p>
+
+      <h2 className="text-3xl md:text-4xl font-bold mb-4">
+        Il vero rischio non è visibile
+      </h2>
+
+      <p className="text-lg text-slate-600">
+        Batteri, biofilm e contaminazioni nell’acqua e negli impianti non si vedono,
+        ma creano problemi reali: inefficienze, rischi sanitari e costi nascosti.
+      </p>
+    </div>
+
+    <div className="grid md:grid-cols-3 gap-6">
+
+      <div className="bg-white border border-slate-200 rounded-2xl p-6">
+        <h3 className="font-semibold mb-3">Biofilm negli impianti</h3>
+        <p className="text-slate-600 text-sm">
+          Strati invisibili di batteri che resistono ai trattamenti tradizionali
+          e riducono l’efficacia della disinfezione.
+        </p>
+      </div>
+
+      <div className="bg-white border border-slate-200 rounded-2xl p-6">
+        <h3 className="font-semibold mb-3">Acqua contaminata</h3>
+        <p className="text-slate-600 text-sm">
+          Presenza di microrganismi che può compromettere qualità, sicurezza e
+          continuità operativa.
+        </p>
+      </div>
+
+      <div className="bg-white border border-slate-200 rounded-2xl p-6">
+        <h3 className="font-semibold mb-3">Costi nascosti</h3>
+        <p className="text-slate-600 text-sm">
+          Manutenzioni frequenti, inefficienze e problemi ricorrenti che
+          aumentano i costi nel tempo.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
 
       <section id="applicazioni" className="max-w-6xl mx-auto px-6 py-20">
         <div className="text-center mb-12">
@@ -152,54 +199,7 @@ export default function Home() {
         >
           Scrivici ora
         </a>
-        <section className="bg-slate-50 border-t border-slate-200">
-  <div className="max-w-6xl mx-auto px-6 py-20">
-
-    <div className="max-w-3xl mb-12">
-      <p className="text-sm uppercase tracking-[0.25em] text-slate-500 mb-3">
-        Il problema
-      </p>
-
-      <h2 className="text-3xl md:text-4xl font-bold mb-4">
-        Il vero rischio non è visibile
-      </h2>
-
-      <p className="text-lg text-slate-600">
-        Batteri, biofilm e contaminazioni nell’acqua e negli impianti non si vedono,
-        ma creano problemi reali: inefficienze, rischi sanitari e costi nascosti.
-      </p>
-    </div>
-
-    <div className="grid md:grid-cols-3 gap-6">
-
-      <div className="bg-white border border-slate-200 rounded-2xl p-6">
-        <h3 className="font-semibold mb-3">Biofilm negli impianti</h3>
-        <p className="text-slate-600 text-sm">
-          Strati invisibili di batteri che resistono ai trattamenti tradizionali
-          e riducono l’efficacia della disinfezione.
-        </p>
-      </div>
-
-      <div className="bg-white border border-slate-200 rounded-2xl p-6">
-        <h3 className="font-semibold mb-3">Acqua contaminata</h3>
-        <p className="text-slate-600 text-sm">
-          Presenza di microrganismi che può compromettere qualità, sicurezza e
-          continuità operativa.
-        </p>
-      </div>
-
-      <div className="bg-white border border-slate-200 rounded-2xl p-6">
-        <h3 className="font-semibold mb-3">Costi nascosti</h3>
-        <p className="text-slate-600 text-sm">
-          Manutenzioni frequenti, inefficienze e problemi ricorrenti che
-          aumentano i costi nel tempo.
-        </p>
-      </div>
-
-    </div>
-
-  </div>
-</section>
+      </section>
     </main>
   );
 }
