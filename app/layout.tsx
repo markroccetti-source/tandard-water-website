@@ -27,7 +27,34 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="bg-white text-slate-900">
+  <header className="w-full border-b border-slate-200 bg-white/80 backdrop-blur sticky top-0 z-50">
+    <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      
+      <div className="font-semibold text-lg">
+        Standard Water
+      </div>
+
+      <nav className="hidden md:flex items-center gap-6 text-sm">
+        <a href="#applicazioni" className="text-slate-600 hover:text-black">
+          Applicazioni
+        </a>
+        <a href="#contatti" className="text-slate-600 hover:text-black">
+          Contatti
+        </a>
+      </nav>
+
+      <a
+        href="#contatti"
+        className="rounded-xl bg-slate-900 text-white px-4 py-2 text-sm font-medium"
+      >
+        Contattaci
+      </a>
+    </div>
+  </header>
+
+  {children}
+</body>
     </html>
   );
 }
