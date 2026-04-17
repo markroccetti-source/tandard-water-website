@@ -1,3 +1,146 @@
+"use client";
+
+import { useState } from "react";
+
+function ContactForm() {
+  const [form, setForm] = useState({
+    nome: "",
+    email: "",
+    messaggio: "",
+  });
+  const [loading, setLoading] = useState(false);
+  const [done, setDone] = useState(false);
+  const [error, setError] = useState("");
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setLoading(true);
+    setDone(false);
+    setError("");
+
+    try {
+      const res = await fetch(
+        "https://marcantonio.app.n8n.cloud/webhook/standard-water-lead",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(form),
+        }
+      );
+
+      if (!res.ok) {
+        throw new Error("Invio non riuscito");
+      }
+
+      setDone(true);
+      setForm({ nome: "", email: "", messaggio: "" });
+    } catch (err) {
+      console.error(err);
+      setError("C'è stato un problema nell'invio. Riprova.");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  return (
+    <section id="contatti" className="max-w-5xl mx-auto px-6 py-24">
+      <div className="text-center mb-12">
+        <p className="text-sm uppercase tracking-[0.25em] text-slate-500 mb-3">
+          Contatti
+        </p>
+
+        <h2 className="text-3xl md:text-5xl font-bold mb-5">
+          Vuoi capire se ClorOX2 è adatto alla tua attività?
+        </h2>
+
+        <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+          Compila il modulo qui sotto per ricevere informazioni commerciali e
+          applicative sulle soluzioni Standard Water.
+        </p>
+      </div>
+
+      <div className="grid md:grid-cols-2 gap-8 items-start">
+        <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+          <h3 className="text-2xl font-semibold mb-4">Parlaci della tua esigenza</h3>
+          <p className="text-slate-600 leading-relaxed mb-6">
+            Se operi nel settore civile, industriale o zootecnico, possiamo aiutarti
+            a capire come utilizzare ClorOX2 nel modo più adatto al tuo contesto.
+          </p>
+
+          <div className="space-y-4 text-slate-600">
+            <p>• Richieste commerciali</p>
+            <p>• Informazioni applicative</p>
+            <p>• Valutazione del contesto di utilizzo</p>
+          </div>
+        </div>
+
+        <form
+          onSubmit={handleSubmit}
+          className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm space-y-5"
+        >
+          <div>
+            <label htmlFor="nome" className="block text-sm font-medium mb-2">
+              Nome
+            </label>
+            <input
+              id="nome"
+              type="text"
+              value={form.nome}
+              onChange={(e) => setForm({ ...form, nome: e.target.value })}
+              className="w-full rounded-2xl border border-slate-300 px-4 py-3 outline-none focus:border-slate-500"
+              placeholder="Il tuo nome"
+              required
+            />
+          </div>
+
+          <div>
+            <label htmlFor="email" className="block text-sm font-medium mb-2">
+              Email
+            </label>
+            <input
+              id="email"
+              type="email"
+              value={form.email}
+              onChange={(e) => setForm({ ...form, email: e.target.value })}
+              className="w-full rounded-2xl border border-slate-300 px-4 py-3 outline-none focus:border-slate-500"
+              placeholder="nome@azienda.it"
+              required
+            />
+          </div>
+
+          <div>
+            <label htmlFor="messaggio" className="block text-sm font-medium mb-2">
+              Messaggio
+            </label>
+            <textarea
+              id="messaggio"
+              rows={6}
+              value={form.messaggio}
+              onChange={(e) => setForm({ ...form, messaggio: e.target.value })}
+              className="w-full rounded-2xl border border-slate-300 px-4 py-3 outline-none focus:border-slate-500"
+              placeholder="Descrivi brevemente la tua esigenza"
+              required
+            />
+          </div>
+
+          <button
+            type="submit"
+            disabled={loading}
+            className="inline-flex items-center justify-center rounded-2xl bg-slate-900 text-white px-8 py-4 font-medium shadow-lg shadow-slate-300/40 transition hover:-translate-y-0.5 disabled:opacity-60"
+          >
+            {loading ? "Invio..." : "Invia richiesta"}
+          </button>
+
+          {done && <p className="text-green-600">Richiesta inviata correttamente ✅</p>}
+          {error && <p className="text-red-600">{error}</p>}
+        </form>
+      </div>
+    </section>
+  );
+}
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-white via-slate-50 to-white text-slate-900">
@@ -227,164 +370,7 @@ export default function Home() {
         </div>
       </section>
 
-      <ContactForm /> className="max-w-5xl mx-auto px-6 py-24">
-  <div className="text-center mb-12">
-    <p className="text-sm uppercase tracking-[0.25em] text-slate-500 mb-3">
-      Contatti
-    </p>
-
-    <h2 className="text-3xl md:text-5xl font-bold mb-5">
-      Vuoi capire se ClorOX2 è adatto alla tua attività?
-    </h2>
-
-    <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-      Compila il modulo qui sotto per ricevere informazioni commerciali e
-      applicative sulle soluzioni Standard Water.
-    </p>
-  </div>
-
-  <div className="grid md:grid-cols-2 gap-8 items-start">
-    <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
-      <h3 className="text-2xl font-semibold mb-4">Parlaci della tua esigenza</h3>
-      <p className="text-slate-600 leading-relaxed mb-6">
-        Se operi nel settore civile, industriale o zootecnico, possiamo aiutarti
-        a capire come utilizzare ClorOX2 nel modo più adatto al tuo contesto.
-      </p>
-
-      <div className="space-y-4 text-slate-600">
-        <p>• Richieste commerciali</p>
-        <p>• Informazioni applicative</p>
-        <p>• Valutazione del contesto di utilizzo</p>
-      </div>
-    </div>
-
-    <form
-"use client";
-
-import { useState } from "react";
-
-export default function ContactForm() {
-  const [form, setForm] = useState({
-    nome: "",
-    email: "",
-    messaggio: "",
-  });
-
-  const [loading, setLoading] = useState(false);
-  const [done, setDone] = useState(false);
-
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    setLoading(true);
-    setDone(false);
-
-    try {
-      await fetch("https://marcantonio.app.n8n.cloud/webhook/standard-water-lead", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(form),
-      });
-
-      setDone(true);
-      setForm({ nome: "", email: "", messaggio: "" });
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  return (
-    <form onSubmit={handleSubmit} className="space-y-5">
-      <input
-        placeholder="Nome"
-        value={form.nome}
-        onChange={(e) => setForm({ ...form, nome: e.target.value })}
-        className="w-full border p-3 rounded-xl"
-      />
-
-      <input
-        placeholder="Email"
-        value={form.email}
-        onChange={(e) => setForm({ ...form, email: e.target.value })}
-        className="w-full border p-3 rounded-xl"
-      />
-
-      <textarea
-        placeholder="Messaggio"
-        value={form.messaggio}
-        onChange={(e) => setForm({ ...form, messaggio: e.target.value })}
-        className="w-full border p-3 rounded-xl"
-      />
-
-      <button
-        type="submit"
-        className="bg-black text-white px-6 py-3 rounded-xl"
-      >
-        {loading ? "Invio..." : "Invia richiesta"}
-      </button>
-
-      {done && <p className="text-green-600">Inviato ✅</p>}
-    </form>
-  );
-}
-      method="post"
-      encType="text/plain"
-      className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm space-y-5"
-    >
-      <div>
-        <label htmlFor="nome" className="block text-sm font-medium mb-2">
-          Nome
-        </label>
-        <input
-          id="nome"
-          name="Nome"
-          type="text"
-          className="w-full rounded-2xl border border-slate-300 px-4 py-3 outline-none focus:border-slate-500"
-          placeholder="Il tuo nome"
-          required
-        />
-      </div>
-
-      <div>
-        <label htmlFor="email" className="block text-sm font-medium mb-2">
-          Email
-        </label>
-        <input
-          id="email"
-          name="Email"
-          type="email"
-          className="w-full rounded-2xl border border-slate-300 px-4 py-3 outline-none focus:border-slate-500"
-          placeholder="nome@azienda.it"
-          required
-        />
-      </div>
-
-      <div>
-        <label htmlFor="messaggio" className="block text-sm font-medium mb-2">
-          Messaggio
-        </label>
-        <textarea
-          id="messaggio"
-          name="Messaggio"
-          rows={6}
-          className="w-full rounded-2xl border border-slate-300 px-4 py-3 outline-none focus:border-slate-500"
-          placeholder="Descrivi brevemente la tua esigenza"
-          required
-        />
-      </div>
-
-      <button
-        type="submit"
-        className="inline-flex items-center justify-center rounded-2xl bg-slate-900 text-white px-8 py-4 font-medium shadow-lg shadow-slate-300/40 transition hover:-translate-y-0.5"
-      >
-        Invia richiesta
-      </button>
-    </form>
-  </div>
-</section>
+      <ContactForm />
     </main>
   );
 }
