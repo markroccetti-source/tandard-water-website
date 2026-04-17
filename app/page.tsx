@@ -227,7 +227,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="contatti" className="max-w-5xl mx-auto px-6 py-24">
+      <ContactForm /> className="max-w-5xl mx-auto px-6 py-24">
   <div className="text-center mb-12">
     <p className="text-sm uppercase tracking-[0.25em] text-slate-500 mb-3">
       Contatti
@@ -259,7 +259,77 @@ export default function Home() {
     </div>
 
     <form
-      action="mailto:info@standardwater.it"
+"use client";
+
+import { useState } from "react";
+
+export default function ContactForm() {
+  const [form, setForm] = useState({
+    nome: "",
+    email: "",
+    messaggio: "",
+  });
+
+  const [loading, setLoading] = useState(false);
+  const [done, setDone] = useState(false);
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setLoading(true);
+    setDone(false);
+
+    try {
+      await fetch("https://marcantonio.app.n8n.cloud/webhook/standard-water-lead", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(form),
+      });
+
+      setDone(true);
+      setForm({ nome: "", email: "", messaggio: "" });
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="space-y-5">
+      <input
+        placeholder="Nome"
+        value={form.nome}
+        onChange={(e) => setForm({ ...form, nome: e.target.value })}
+        className="w-full border p-3 rounded-xl"
+      />
+
+      <input
+        placeholder="Email"
+        value={form.email}
+        onChange={(e) => setForm({ ...form, email: e.target.value })}
+        className="w-full border p-3 rounded-xl"
+      />
+
+      <textarea
+        placeholder="Messaggio"
+        value={form.messaggio}
+        onChange={(e) => setForm({ ...form, messaggio: e.target.value })}
+        className="w-full border p-3 rounded-xl"
+      />
+
+      <button
+        type="submit"
+        className="bg-black text-white px-6 py-3 rounded-xl"
+      >
+        {loading ? "Invio..." : "Invia richiesta"}
+      </button>
+
+      {done && <p className="text-green-600">Inviato ✅</p>}
+    </form>
+  );
+}
       method="post"
       encType="text/plain"
       className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm space-y-5"
