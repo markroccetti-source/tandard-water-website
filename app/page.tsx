@@ -227,27 +227,94 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="contatti" className="max-w-4xl mx-auto px-6 py-24 text-center">
-        <p className="text-sm uppercase tracking-[0.25em] text-slate-500 mb-3">
-          Contatti
-        </p>
+      <section id="contatti" className="max-w-5xl mx-auto px-6 py-24">
+  <div className="text-center mb-12">
+    <p className="text-sm uppercase tracking-[0.25em] text-slate-500 mb-3">
+      Contatti
+    </p>
 
-        <h2 className="text-3xl md:text-5xl font-bold mb-5">
-          Vuoi capire se ClorOX2 è adatto alla tua attività?
-        </h2>
+    <h2 className="text-3xl md:text-5xl font-bold mb-5">
+      Vuoi capire se ClorOX2 è adatto alla tua attività?
+    </h2>
 
-        <p className="text-lg text-slate-600 mb-10 max-w-2xl mx-auto">
-          Contattaci per ricevere informazioni commerciali e applicative sulle
-          soluzioni Standard Water.
-        </p>
+    <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+      Compila il modulo qui sotto per ricevere informazioni commerciali e
+      applicative sulle soluzioni Standard Water.
+    </p>
+  </div>
 
-        <a
-          href="mailto:info@standardwater.it"
-          className="inline-flex items-center justify-center rounded-2xl bg-slate-900 text-white px-8 py-4 font-medium shadow-lg shadow-slate-300/40 transition hover:-translate-y-0.5"
-        >
-          Scrivici ora
-        </a>
-      </section>
+  <div className="grid md:grid-cols-2 gap-8 items-start">
+    <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+      <h3 className="text-2xl font-semibold mb-4">Parlaci della tua esigenza</h3>
+      <p className="text-slate-600 leading-relaxed mb-6">
+        Se operi nel settore civile, industriale o zootecnico, possiamo aiutarti
+        a capire come utilizzare ClorOX2 nel modo più adatto al tuo contesto.
+      </p>
+
+      <div className="space-y-4 text-slate-600">
+        <p>• Richieste commerciali</p>
+        <p>• Informazioni applicative</p>
+        <p>• Valutazione del contesto di utilizzo</p>
+      </div>
+    </div>
+
+    <form
+      action="mailto:info@standardwater.it"
+      method="post"
+      encType="text/plain"
+      className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm space-y-5"
+    >
+      <div>
+        <label htmlFor="nome" className="block text-sm font-medium mb-2">
+          Nome
+        </label>
+        <input
+          id="nome"
+          name="Nome"
+          type="text"
+          className="w-full rounded-2xl border border-slate-300 px-4 py-3 outline-none focus:border-slate-500"
+          placeholder="Il tuo nome"
+          required
+        />
+      </div>
+
+      <div>
+        <label htmlFor="email" className="block text-sm font-medium mb-2">
+          Email
+        </label>
+        <input
+          id="email"
+          name="Email"
+          type="email"
+          className="w-full rounded-2xl border border-slate-300 px-4 py-3 outline-none focus:border-slate-500"
+          placeholder="nome@azienda.it"
+          required
+        />
+      </div>
+
+      <div>
+        <label htmlFor="messaggio" className="block text-sm font-medium mb-2">
+          Messaggio
+        </label>
+        <textarea
+          id="messaggio"
+          name="Messaggio"
+          rows={6}
+          className="w-full rounded-2xl border border-slate-300 px-4 py-3 outline-none focus:border-slate-500"
+          placeholder="Descrivi brevemente la tua esigenza"
+          required
+        />
+      </div>
+
+      <button
+        type="submit"
+        className="inline-flex items-center justify-center rounded-2xl bg-slate-900 text-white px-8 py-4 font-medium shadow-lg shadow-slate-300/40 transition hover:-translate-y-0.5"
+      >
+        Invia richiesta
+      </button>
+    </form>
+  </div>
+</section>
     </main>
   );
 }
